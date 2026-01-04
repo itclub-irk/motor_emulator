@@ -295,6 +295,7 @@ dependencies = [
     { name = "adafruit-ampy" },
     { name = "esptool" },
     { name = "micropython-esp32-esp32-generic-c3-stubs" },
+    { name = "mpremote" },
 ]
 
 [package.metadata]
@@ -302,6 +303,29 @@ requires-dist = [
     { name = "adafruit-ampy", specifier = ">=1.1.0" },
     { name = "esptool", specifier = ">=4.8.1" },
     { name = "micropython-esp32-esp32-generic-c3-stubs", specifier = ">=1.23.0.post2" },
+    { name = "mpremote", specifier = ">=1.27.0" },
+]
+
+[[package]]
+name = "mpremote"
+version = "1.27.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "platformdirs" },
+    { name = "pyserial" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d2/1c/be7d96275379eca70af111a1d4711c77b1afa78f1782582f3ad082e2d228/mpremote-1.27.0.tar.gz", hash = "sha256:6bb75774648091dad6833af4f86c5bf6505f8d7aec211380f9e6996c01d23cb5", size = 31420 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/58/bf/cb9a7f38015c0fec0295b2cd014b830561f224d264f2f303c2ec15d8ef2f/mpremote-1.27.0-py3-none-any.whl", hash = "sha256:11d134c69b21b487dae3d03eed54c8ccbf84c916c8732a3e069a97cae47be3d4", size = 36094 },
+]
+
+[[package]]
+name = "platformdirs"
+version = "4.5.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/cf/86/0248f086a84f01b37aaec0fa567b397df1a119f73c16f6c7a9aac73ea309/platformdirs-4.5.1.tar.gz", hash = "sha256:61d5cdcc6065745cdd94f0f878977f8de9437be93de97c1c12f853c9c0cdcbda", size = 21715 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cb/28/3bfe2fa5a7b9c46fe7e13c97bda14c895fb10fa2ebf1d0abb90e0cea7ee1/platformdirs-4.5.1-py3-none-any.whl", hash = "sha256:d03afa3963c806a9bed9d5125c8f4cb2fdaf74a55ab60e5d59b3fde758104d31", size = 18731 },
 ]
 
 [[package]]

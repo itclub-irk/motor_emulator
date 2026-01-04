@@ -5,7 +5,7 @@ import time
 # Intervals for generating pulses simulating the sound of a motor
 # Lower value - higher frequency
 DEFAULT_SPEAKER_INTERVAL = 80000  # Idling (minimum RPM)
-MIN_SPEAKER_INTERVAL = 10000  # Maximum RPM
+MIN_SPEAKER_INTERVAL = 9000  # Maximum RPM
 
 ACCUMULATOR_DEADZONE = 250  # Adjust to eliminate speaker-accelerometer feedback loop
 SPEED_DECRIMENT = 15  # Dynamics of decreasing RPM
@@ -69,26 +69,23 @@ while True:
     elif current_speaker_interval < MIN_SPEAKER_INTERVAL:
         current_speaker_interval = MIN_SPEAKER_INTERVAL
 
-    if not motor_enabled:
-        continue
-
     if (
         time.ticks_diff(time.ticks_ms(), last_motor_enabled_tick)
         >= MOTOR_NOOP_TIMEOUT_SECONDS * 1000
     ):
         motor_enabled = False
-        continue
 
     if time.ticks_diff(time.ticks_us(), last_speaker_tick) >= current_speaker_interval:
         speaker_pin_state = not speaker_pin_state
-        speaker_pin.value(speaker_pin_state)
         last_speaker_tick = time.ticks_us()
         if speaker_pin_state:
             last_speaker_on_tick = last_speaker_tick
 
-    # Здесь можно настроить скважность импульсов
-    if (
-        speaker_pin_state
-        and time.ticks_diff(time.ticks_us(), last_speaker_on_tick) >= 500
-    ):
+    if motor_enabled:
+        # Здесь можно настроить скважность импульсов
+        if time.ticks_diff(time.ticks_us(), last_speaker_on_tick) >= 500:
+            speaker_pin.value(False)
+        else:
+            speaker_pin.value(speaker_pin_state)
+    else:
         speaker_pin.value(False)
